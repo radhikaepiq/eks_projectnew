@@ -96,17 +96,17 @@ variable "ingress_rules" {
   description = "Security group rules"
 }
 ////eks needed 
-# variable "capacity" {
-#   type = string
-#   description = "Can be On Demand or Spot"
-#   default = "ON_DEMAND"
-# }   
+variable "capacity" {
+  type = string
+  description = "Can be On Demand or Spot"
+  default = "ON_DEMAND"
+}   
 
-# variable "instance" {
-#   type = string
-#   description = "Instance Type"
-#   default = "t3a.medium"
-# }
+variable "instance" {
+  type = string
+  description = "Instance Type"
+  default = "t3a.medium"
+}
 variable "project" {
   type = string
   description = "Name of the Project and Cluster"
