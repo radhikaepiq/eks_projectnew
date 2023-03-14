@@ -5,7 +5,7 @@ provider "aws" {
 #E VPC modules
 module "EKS_vpc" {
   # source      = "../modules/vpc"
-  source = "git::https://github.com/radhikaepiq/eks_projectnew.git//modules/vpc"
+  source = "git::https://github.com/radhikaepiq/EKS_PROJECT.git//modules/vpc"
   # https://github.com/radhikaepiq/eks_projectnew.git
   vpc_cidr    = var.vpc_cidr
   Namevpc  = var.Namevpc
@@ -15,7 +15,7 @@ module "EKS_vpc" {
 
 ## internet gateway
 module "EKS_igw" {
-  source      = "git::https://github.com/radhikaepiq/eks_projectnew.git//modules/internetgw"
+  source      = "git::https://github.com/radhikaepiq/EKS_PROJECT.git//modules/vpc"
   vpc_id      = "${module.EKS_vpc.vpc_id}"
   NameIG  = var.NameIG
   Owner = var.Owner
@@ -23,7 +23,7 @@ module "EKS_igw" {
 }
 
 module "EKS_rttbl" {
-  source      = "git::https://github.com/radhikaepiq/eks_projectnew.git//modules/routetable"
+  source      = "git::https://github.com/radhikaepiq/EKS_PROJECT.git//modules/routetable"
   vpc_id      = "${module.EKS_vpc.vpc_id}"
   igw_id = "${module.EKS_igw.igw_id}"
   cidr_block = var.cidr_block
@@ -33,7 +33,7 @@ module "EKS_rttbl" {
   }
 
   module "EKS_SCGP" {
-  source      = "git::https://github.com/radhikaepiq/eks_projectnew.git//modules/securitygrp"
+  source      = "git::https://github.com/radhikaepiq/EKS_PROJECT.git//modules/securitygrp"
   vpc_id      = "${module.EKS_vpc.vpc_id}"
   ingress_rules    = var.ingress_rules
   NameSG  = var.NameSG
@@ -44,7 +44,7 @@ module "EKS_rttbl" {
   }
 
   module "EKS_subnets" {
-  source      = "git::https://github.com/radhikaepiq/eks_projectnew.git//modules/subnets" 
+  source      = "git::https://github.com/radhikaepiq/EKS_PROJECT.git//modules/subnets" 
   vpc_id    =  "${module.EKS_vpc.vpc_id}"
   subnets = var.subnets
   subnettag  = var.subnettag
@@ -52,7 +52,7 @@ module "EKS_rttbl" {
   Purpose  = var.Purpose
   }
    module "EKS_Pvtsubnets" {
-  source      = "git::https://github.com/radhikaepiq/eks_projectnew.git//modules/pvtsubnets" 
+  source      = "git::https://github.com/radhikaepiq/EKS_PROJECT.git//modules/pvtsubnets" 
   vpc_id    =  "${module.EKS_vpc.vpc_id}"
   pvtsubnets = var.pvtsubnets
   pvtsubnettag  = var.pvtsubnettag
@@ -61,7 +61,7 @@ module "EKS_rttbl" {
   }
 
 module "EKS_routeassociation" {
-  source      = "git::https://github.com/radhikaepiq/eks_projectnew.git//modules/routeassociation"
+  source      = "git::https://github.com/radhikaepiq/EKS_PROJECT.git//modules/routeassociation"
   route_table_id = "${module.EKS_rttbl.route_table_id}"
   subnet_id = "${module.EKS_subnets.subnet_id}" 
 }
