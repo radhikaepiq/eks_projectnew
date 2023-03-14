@@ -15,7 +15,7 @@ module "EKS_vpc" {
 
 ## internet gateway
 module "EKS_igw" {
-  source      = "git::https://github.com/radhikaepiq/EKS_PROJECT.git//modules/vpc"
+  source      = "git::https://github.com/radhikaepiq/EKS_PROJECT.git//modules/internetgw"
   vpc_id      = "${module.EKS_vpc.vpc_id}"
   NameIG  = var.NameIG
   Owner = var.Owner
@@ -66,6 +66,6 @@ module "EKS_routeassociation" {
   subnet_id = "${module.EKS_subnets.subnet_id}" 
 }
 
-output "infra"{
-  value = [module.EKS_vpc.vpc_id,module.EKS_igw.igw_id,module.EKS_rttbl.route_table_id,module.EKS_subnets.subnet_id,module.EKS_routeassociation.routeassociation_id,module.EKS_SCGP.secgrp_id,module.EKS_Pvtsubnets.pvtsubnet_id]
-}
+# output "infra"{
+#   value = [module.EKS_vpc.vpc_id,module.EKS_igw.igw_id,module.EKS_rttbl.route_table_id,module.EKS_subnets.subnet_id,module.EKS_routeassociation.routeassociation_id,module.EKS_SCGP.secgrp_id,module.EKS_Pvtsubnets.pvtsubnet_id]
+# }
