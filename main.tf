@@ -4,9 +4,7 @@ provider "aws" {
 
 #E VPC modules
 module "EKS_vpc" {
-  # source      = "../modules/vpc"
   source = "git::https://github.com/radhikaepiq/EKS_PROJECT.git//modules/vpc"
-  # https://github.com/radhikaepiq/eks_projectnew.git
   vpc_cidr    = var.vpc_cidr
   Namevpc  = var.Namevpc
   Owner = var.Owner
